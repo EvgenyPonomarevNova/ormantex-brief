@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Бриф проекта Ormantex</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#f2f4f7;
+  padding:40px;
+}
+.container {
+  max-width:1000px;
+  margin:auto;
+  background:#fff;
+  padding:40px;
+  border-radius:10px;
+}
+h1 { margin-bottom:5px; }
+h2 {
+  margin-top:35px;
+  padding-bottom:6px;
+  border-bottom:2px solid #e1e1e1;
+}
+label { display:block; margin:6px 0; }
+textarea {
+  width:100%;
+  min-height:70px;
+  margin-top:8px;
+}
+button {
+  margin-top:40px;
+  padding:16px 30px;
+  font-size:16px;
+  background:#1e88e5;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover { background:#1565c0; }
+.small { font-size:13px; color:#666; }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Бриф проекта сайта Ormantex</h1>
+<p class="small">
+Пожалуйста, отметьте подходящие варианты. Можно выбрать несколько.
+В каждом разделе можно оставить комментарий или дополнить ответ.
+</p>
+
+<form id="brief">
+
+<h2>1. Цели и задачи сайта</h2>
+<label><input type="checkbox"> Получение заявок от оптовых клиентов</label>
+<label><input type="checkbox"> Запрос коммерческих предложений</label>
+<label><input type="checkbox"> Запрос образцов продукции</label>
+<label><input type="checkbox"> Имиджевое представление завода-производителя</label>
+<label><input type="checkbox"> Привлечение SEO-трафика</label>
+<textarea placeholder="Комментарии, приоритеты, KPI"></textarea>
+
+<h2>2. Позиционирование и ключевой оффер</h2>
+<label><input type="checkbox"> Акцент на собственное производство</label>
+<label><input type="checkbox"> Акцент на индивидуальные заказы</label>
+<label><input type="checkbox"> Акцент на цену от завода</label>
+<label><input type="checkbox"> Акцент на опыт и историю компании</label>
+<textarea placeholder="Какую основную мысль должен донести сайт?"></textarea>
+
+<h2>3. Структура сайта</h2>
+<label><input type="checkbox"> Сохранить текущую структуру сайта</label>
+<label><input type="checkbox"> Допустить точечные изменения структуры</label>
+<label><input type="checkbox"> Добавить новые разделы</label>
+<label><input type="checkbox"> Убрать или объединить существующие страницы</label>
+<textarea placeholder="Какие разделы добавить / изменить / убрать"></textarea>
+
+<h2>4. Направления бизнеса</h2>
+<label><input type="checkbox"> Молнии — основной каталог</label>
+<label><input type="checkbox"> Производство упаковки</label>
+<label><input type="checkbox"> Производство биркодержателей</label>
+<label><input type="checkbox"> Все направления должны быть равнозначными</label>
+<textarea placeholder="Как лучше представить дополнительные направления"></textarea>
+
+<h2>5. Каталог продукции</h2>
+<label><input type="checkbox"> Каталог должен быть максимально детальным</label>
+<label><input type="checkbox"> Каталог — основной источник заявок</label>
+<label><input type="checkbox"> Каталог нужен в первую очередь для SEO</label>
+<textarea placeholder="Комментарии к структуре каталога"></textarea>
+
+<h2>6. Карточка товара</h2>
+<label><input type="checkbox"> Таблица технических характеристик</label>
+<label><input type="checkbox"> Таблицы размеров</label>
+<label><input type="checkbox"> Схемы / чертежи</label>
+<label><input type="checkbox"> Фото на белом фоне</label>
+<label><input type="checkbox"> Фото в применении (на изделии)</label>
+<label><input type="checkbox"> PDF, сертификаты, техлисты</label>
+<textarea placeholder="Что обязательно должно быть в карточке товара"></textarea>
+
+<h2>7. Фильтрация и навигация</h2>
+<label><input type="checkbox"> Тип продукции</label>
+<label><input type="checkbox"> Размер</label>
+<label><input type="checkbox"> Цвет</label>
+<label><input type="checkbox"> Материал</label>
+<label><input type="checkbox"> Назначение</label>
+<label><input type="checkbox"> Производственное направление</label>
+<textarea placeholder="Дополнительные фильтры или требования"></textarea>
+
+<h2>8. Цены и коммерческие условия</h2>
+<label><input type="checkbox"> Цены не показываем</label>
+<label><input type="checkbox"> Цена «по запросу»</label>
+<label><input type="checkbox"> Частичное отображение цен</label>
+<textarea placeholder="Как пользователи должны понимать стоимость"></textarea>
+
+<h2>9. Коммерческие элементы (CTA)</h2>
+<label><input type="checkbox"> Запрос коммерческого предложения</label>
+<label><input type="checkbox"> Запрос образцов</label>
+<label><input type="checkbox"> Получить каталог</label>
+<label><input type="checkbox"> Связаться с менеджером</label>
+<label><input type="checkbox"> Онлайн-чат (Telegram / WhatsApp)</label>
+<textarea placeholder="Какие действия важнее всего"></textarea>
+
+<h2>10. Контент и тексты</h2>
+<label><input type="checkbox"> Перенос текстов со старого сайта</label>
+<label><input type="checkbox"> Частичная переработка текстов</label>
+<label><input type="checkbox"> Полностью новые тексты</label>
+<label><input type="checkbox"> Развитие блога / статей</label>
+<textarea placeholder="Кто и как готовит контент"></textarea>
+
+<h2>11. Фото и видео</h2>
+<label><input type="checkbox"> Будут пересняты фото продукции заказчиком</label>
+<label><input type="checkbox"> Использовать текущие фото</label>
+<label><input type="checkbox"> Фото производства</label>
+<label><input type="checkbox"> Видео производства</label>
+<label><input type="checkbox"> Видео продукции</label>
+<textarea placeholder="Сроки и готовность медиа-контента"></textarea>
+
+<h2>12. Дизайн и визуальный стиль</h2>
+<label><input type="checkbox"> Современный, сдержанный B2B-дизайн</label>
+<label><input type="checkbox"> Максимально современный (как alyzip.ru)</label>
+<label><input type="checkbox"> Освежённая версия текущего стиля</label>
+<label><input type="checkbox"> Есть брендбук / фирменный стиль</label>
+<textarea placeholder="Примеры сайтов и пожелания"></textarea>
+
+<h2>13. Дополнительные сведенья в свободной форме</h2>
+<textarea placeholder="Дополнительно опишите свои идеи, пожелания в свободной форме"></textarea>
+
+<button type="button" onclick="save()">Сохранить заполненный файл</button>
+
+</form>
+</div>
+
+<script>
+function save() {
+  let text = "";
+  document.querySelectorAll("h2").forEach(section => {
+    text += "\n" + section.innerText.toUpperCase() + "\n";
+    let el = section.nextElementSibling;
+    while (el && el.tagName !== "H2") {
+      if (el.tagName === "LABEL") {
+        let cb = el.querySelector("input");
+        text += (cb.checked ? "[X] " : "[ ] ") + el.innerText + "\n";
+      }
+      if (el.tagName === "TEXTAREA" && el.value.trim()) {
+        text += "Комментарий: " + el.value + "\n";
+      }
+      el = el.nextElementSibling;
+    }
+  });
+
+  const blob = new Blob([text], { type: "text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ormantex-brief.txt";
+  a.click();
+}
+</script>
+
+</body>
+</html>
