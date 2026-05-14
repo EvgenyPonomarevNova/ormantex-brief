@@ -40,6 +40,49 @@ button {
 }
 button:hover { background:#1565c0; }
 .small { font-size:13px; color:#666; }
+.catalog-table {
+  margin-top:40px;
+  overflow-x:auto;
+}
+
+.catalog-table table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:1100px;
+}
+
+.catalog-table th,
+.catalog-table td {
+  border:1px solid #ddd;
+  padding:8px;
+  font-size:14px;
+}
+
+.catalog-table th {
+  background:#f5f7fa;
+  text-align:left;
+}
+
+.catalog-table select,
+.catalog-table input {
+  width:100%;
+  padding:6px;
+  font-size:13px;
+}
+
+.catalog-actions {
+  margin-top:20px;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+@media (min-width: 900px) {
+  .grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+  }}
+
 </style>
 </head>
 
@@ -147,8 +190,13 @@ button:hover { background:#1565c0; }
 <textarea placeholder="Дополнительно опишите свои идеи, пожелания в свободной форме"></textarea>
 
 <button type="button" onclick="save()">Сохранить заполненный файл</button>
+<button type="button" onclick="toggleCatalog()">
+  Перейти к заполнению каталога продукции
+</button>
+
 
 </form>
+
 </div>
 
 <script>
@@ -175,6 +223,194 @@ function save() {
   a.download = "ormantex-brief.txt";
   a.click();
 }
+let productIndex = 1;
+
+function toggleCatalog() {
+  document.getElementById("catalog").style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function addProduct() {
+  const list = document.getElementById("catalogList");
+
+  const card = document.createElement("div");
+  card.className = "catalog-card";
+
+  card.innerHTML = `
+    <h3>Товар ${productIndex}</h3>
+
+    <div class="grid">
+      <div class="field">
+        <label>Тип продукции</label>
+        <input placeholder="Молнии / Упаковка / Биркодержатели">
+      </div>
+
+      <div class="field">
+        <label>Категория</label>
+        <input placeholder="Основная категория">
+      </div>
+
+      <div class="field">
+        <label>Название товара</label>
+        <input placeholder="Полное название товара">
+      </div>
+
+      <div class="field">
+        <label>Артикул</label>
+        <input placeholder="Уникальный код">
+      </div>
+
+      <div class="field">
+        <label>Описание</label>
+        <input placeholder="Краткое описание товара">
+      </div>
+
+      <div class="field">
+        <label>Тип / серия</label>
+        <input placeholder="Тип изделия">
+      </div>
+
+      <div class="field">
+        <label>Размер</label>
+        <input placeholder="Например: 5, 8, 10">
+      </div>
+
+      <div class="field">
+        <label>Цвет</label>
+        <input placeholder="Название цвета">
+      </div>
+
+      <div class="field">
+        <label>Материал</label>
+        <input placeholder="Металл, пластик и т.д.">
+      </div>
+
+      <div class="field">
+        <label>Фото (по порядку)</label>
+        <input placeholder="photo_01.jpg, photo_02.jpg">
+      </div>
+
+      <div class="field">
+        <label>Чертёж / схема</label>
+        <input placeholder="draw_01.jpg">
+      </div>
+
+      <div class="field">
+        <label>PDF / сертификат</label>
+        <input placeholder="spec_01.pdf">
+      </div>
+
+      <div class="field">
+        <label>Видео</label>
+        <input placeholder="video_01.mp4">
+      </div>
+    </div>
+  `;
+
+  list.appendChild(card);
+  productIndex++;
+}
+
+function saveCatalog() {
+  let csv = "Тип продукции;Категория;Название;Артикул;Описание;Тип;Размер;Цвет;Материал;Фото;Чертеж;PDF;Видео\n";
+
+  document.querySelectorAll(".catalog-card").forEach(card => {
+    let values = [];
+    card.querySelectorAll("input").forEach(input => {
+      values.push(input.value.replaceAll(";", ","));
+    });
+    csv += values.join(";") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ormantex-catalog.csv";
+  a.click();
+}
+
+
+function toggleCatalog() {
+  document.getElementById("catalog").style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+const directions = ["Молнии", "Упаковка", "Биркодержатели"];
+
+const zipperTypes = [
+  "Спиральная",
+  "Тракторная",
+  "Металлическая",
+  "Потайная",
+  "Влагозащитная",
+  "Декоративная"
+];
+
+const sizes = ["3", "4", "5", "7", "8", "10"];
+
+const colors = [
+  "Чёрный", "Белый", "Серый",
+  "Синий", "Красный", "Зелёный",
+  "Бежевый", "Коричневый",
+  "По карте цветов"
+];
+
+const materials = [
+  "Полиэстер",
+  "Пластик",
+  "Металл",
+  "Латунь",
+  "Нейлон"
+];
+
+function createSelect(options) {
+  let select = "<select>";
+  select += "<option value=''>— выбрать —</option>";
+  options.forEach(o => select += `<option>${o}</option>`);
+  select += "</select>";
+  return select;
+}
+
+function addRow() {
+  const tbody = document.querySelector("#catalogTable tbody");
+  const tr = document.createElement("tr");
+
+  tr.innerHTML = `
+    <td>${createSelect(directions)}</td>
+    <td>${createSelect(zipperTypes)}</td>
+    <td>${createSelect(sizes)}</td>
+    <td><input placeholder="Серия / исполнение"></td>
+    <td>${createSelect(colors)}</td>
+    <td>${createSelect(materials)}</td>
+    <td><input placeholder="см или диапазон"></td>
+    <td><input placeholder="Артикул"></td>
+    <td><input placeholder="photo_01.jpg, photo_02.jpg"></td>
+    <td><input placeholder="draw_01.jpg"></td>
+    <td><input placeholder="spec_01.pdf"></td>
+  `;
+
+  tbody.appendChild(tr);
+}
+
+function saveCatalog() {
+  let csv = "Направление;Тип;Размер;Серия;Цвет;Материал;Длина;Артикул;Фото;Чертеж;PDF\n";
+
+  document.querySelectorAll("#catalogTable tbody tr").forEach(tr => {
+    let row = [];
+    tr.querySelectorAll("select, input").forEach(el => {
+      row.push(el.value.replaceAll(";", ","));
+    });
+    csv += row.join(";") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ormantex-catalog.csv";
+  a.click();
+}
+
+
 </script>
 
 </body>
